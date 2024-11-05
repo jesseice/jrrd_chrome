@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "项目名称",
+  "description": "项目描述",
+  "version": "1.0",
+  "icons": {
+    "16": "logo-16.png",
+    "32": "logo-32.png",
+    "48": "logo-48.png",
+    "128": "logo-128.png"
+  },
+  "action": {
+    "default_popup": "src/popup.html"
+  },
+  "side_panel": {
+    "default_path": "src/crx/side.html"
+  },
+  "permissions": ["sidePanel"],
+  "background": {
+    "service_worker": "src/crx/background.ts"
+  }
+}
