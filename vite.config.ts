@@ -8,7 +8,7 @@ export default defineConfig({
     vue(),
     webExtension({
       manifest: "manifest.json",
-      skipManifestValidation: false,
+      skipManifestValidation: true,
       disableAutoLaunch: true,
     }),
   ],

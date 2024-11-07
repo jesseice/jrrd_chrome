@@ -19,7 +19,7 @@
     </div>
     <div v-else class="content">
       <div class="item" v-for="child in dataSource" :key="child.id">
-        <Popover v-if="['知乎'].includes(item.name)">
+        <Popover v-if="item.hasPopover">
           <template #content>
             <div
               style="
@@ -140,7 +140,7 @@ const openLink = (url: string) => {
         -webkit-line-clamp: 1;
       }
       div {
-        width: 100px;
+        width: 80px;
         text-align: center;
       }
     }

@@ -1,5 +1,5 @@
 import { match } from "./utils";
-import { getZhihuHotListApi, getWbHotListApi, getDyHotListApi } from "./utils/request";
+import { getZhihuHotListApi, getWbHotListApi, getDyHotListApi, getJueJinHotListApi, getBaiDuHotListApi } from "./utils/request";
 
 chrome.runtime.onInstalled.addListener(() => {
   // 点击工具栏时展开侧边栏
@@ -23,6 +23,14 @@ chrome.runtime.onMessage.addListener(
       },
       getDyHotList: async () => {
         const res = await getDyHotListApi();
+        sendResponse(res);
+      },
+      getJueJinHotList: async () => {
+        const res = await getJueJinHotListApi();
+        sendResponse(res);
+      },
+      getBaiDuHotList: async () => {
+        const res = await getBaiDuHotListApi();
         sendResponse(res);
       },
       _: () => {},

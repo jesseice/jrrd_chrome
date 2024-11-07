@@ -21,7 +21,9 @@
   "host_permissions": [
     "https://www.zhihu.com/",
     "https://m.weibo.cn/api/*",
-    "https://www.douyin.com/*"
+    "https://www.douyin.com/*",
+    "https://api.juejin.cn/*",
+    "https://top.baidu.com/*"
   ],
   "background": {
     "service_worker": "src/crx/background.ts"
