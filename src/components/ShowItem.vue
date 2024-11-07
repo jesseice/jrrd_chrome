@@ -1,15 +1,25 @@
 <template>
   <div class="show_item">
-    <div class="title" :style="{ backgroundColor: item.bgColor }">
+    <div
+      class="title"
+      :style="{
+        backgroundColor: item.bgColor,
+        backgroundImage: `url(${item.bgImg})`,
+      }"
+    >
       {{ item.name }}
       <a @click="refresh">刷新</a>
     </div>
-    <div class="content" style="display: flex; justify-content: center; align-items: center;" v-if="loading">
+    <div
+      class="content"
+      style="display: flex; justify-content: center; align-items: center"
+      v-if="loading"
+    >
       <Spin />
     </div>
     <div v-else class="content">
       <div class="item" v-for="child in dataSource" :key="child.id">
-        <Popover>
+        <Popover v-if="['知乎'].includes(item.name)">
           <template #content>
             <div
               style="
@@ -37,7 +47,14 @@
             {{ child.title }}
           </p>
         </Popover>
-        <div style="text-align: left">
+        <p
+          v-else
+          :style="{ color: item.titleColor }"
+          @click="openLink(child.link)"
+        >
+          {{ child.title }}
+        </p>
+        <div v-if="child.hot" style="text-align: left">
           <span style="color: red"><FireOutlined /></span> {{ child.hot }}
         </div>
       </div>
@@ -45,7 +62,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { ContentType, TopMsgType } from "./this.d";
 import { FireOutlined } from "@ant-design/icons-vue";
 import { Popover, Spin } from "ant-design-vue";
@@ -56,6 +73,10 @@ const props = defineProps<{
 
 const dataSource = ref<ContentType[]>([]);
 const loading = ref(false);
+
+onMounted(() => {
+  refresh();
+});
 
 const refresh = async () => {
   loading.value = true;

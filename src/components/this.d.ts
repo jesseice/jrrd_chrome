@@ -10,6 +10,7 @@ export type ContentType = {
 export type TopMsgType = {
   name: string;
   apiName: string;
-  bgColor: string;
+  bgColor?: string;
+  bgImg?: string;
   titleColor: string;
 };

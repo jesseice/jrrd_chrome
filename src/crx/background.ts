@@ -1,9 +1,7 @@
 import { match } from "./utils";
-import { getZhihuHotListApi } from "./utils/request";
+import { getZhihuHotListApi, getWbHotListApi, getDyHotListApi } from "./utils/request";
 
 chrome.runtime.onInstalled.addListener(() => {
-  console.log("[onInstalled] ---> ", "onInstalled");
-  console.log("[location] ---> ", location);
   // 点击工具栏时展开侧边栏
   chrome.sidePanel
     .setPanelBehavior({ openPanelOnActionClick: true })
@@ -12,11 +10,19 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.runtime.onMessage.addListener(
   (message: { apiName: string; [key: string]: any }, _sender, sendResponse) => {
-    const { apiName, params } = message;
+    const { apiName } = message;
     match(apiName, {
       /** 爬取知乎 */
       getZhihuHotList: async () => {
         const res = await getZhihuHotListApi();
+        sendResponse(res);
+      },
+      getWbHotList: async () => {
+        const res = await getWbHotListApi();
+        sendResponse(res);
+      },
+      getDyHotList: async () => {
+        const res = await getDyHotListApi();
         sendResponse(res);
       },
       _: () => {},

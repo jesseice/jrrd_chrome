@@ -18,3 +18,21 @@ export const match = <T>(key: matchKey, callbacks: MatchCallbacks<T>) => {
   }
   return (callbacks[key] || callbacks._)();
 };
+
+/** 转 */
+export const formatToW = (numStr: any) => {
+  try {
+    const num = parseInt(String(numStr).replace(/[^\d]/g, ""));
+
+    if (!numStr) return "";
+    if (isNaN(num)) {
+      return numStr; // 如果提取不到数字，直接返回原始输入
+    }
+    if (num < 10000) {
+      return num.toString(); // 如果小于 10000，直接返回原始数字
+    }
+    return (num / 10000).toFixed(1) + "w"; // 除以 10000 并保留一位小数
+  } catch (error) {
+    return "";
+  }
+};
