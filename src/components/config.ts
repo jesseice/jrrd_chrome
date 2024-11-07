@@ -30,8 +30,8 @@ export const platformHex: { [key: string]: TopMsgType } = {
   },
   BAIDU: {
     name: "百度",
-    bgColor: "#1E80FF",
-    titleColor: "#1E8FFF",
+    bgColor: "#2932E1",
+    titleColor: "#190E1B",
     apiName: "getBaiDuHotList",
     hasPopover: true,
   },
