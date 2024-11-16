@@ -13,5 +13,6 @@ export type TopMsgType = {
   titleColor: string;
   bgColor?: string;
   bgImg?: string;
-  hasPopover?:boolean
+  hasPopover?: boolean;
+  logo?: any;
 };
