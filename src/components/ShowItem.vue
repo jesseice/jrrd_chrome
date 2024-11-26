@@ -33,7 +33,7 @@
         </div>
         <div v-else="!loading" class="content">
           <div class="item" v-for="child in dataSource" :key="child.id">
-            <Popover v-if="item.hasPopover">
+            <Popover v-if="item.hasPopover" :title="child.title">
               <template #content>
                 <div
                   style="
